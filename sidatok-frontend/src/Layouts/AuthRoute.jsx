@@ -37,6 +37,9 @@ export default function AuthRoute({ children }) {
   if (!user) {
     return <Navigate to={"/auth/login"} />;
   }
+  if (!user.email_verified_at) {
+    return <Navigate to={"/auth/verification"} />;
+  }
 
   return <>{children ? children : <Outlet />}</>;
 }
